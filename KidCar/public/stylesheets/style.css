@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins|Raleway:700&display=swap');
+body {
+  font-family: 'Raleway', sans-serif;
+  margin: 0;
+}
+
+.menu {
+  width: 100%;
+  position: fixed;
+  text-align: center;
+  background-color: white;
+}
+
+.menu-logo {
+  padding: 10px;
+  float: left;
+}
+
+.nav {
+  overflow: hidden;
+  float: right;
+}
+
+.nav a {
+  float: left;
+  text-decoration: none;
+  color: rgb(14, 13, 13);
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  font-variant: small-caps;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .drop-content {
+  float: left;
+  text-decoration: none;
+  color: rgb(14, 13, 13);
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  font-variant: small-caps;
+  font-size: 20px;
+  padding: 10px;
+  margin: 0;
+}
+
+.nav a:hover, .dropdown:hover .drop-content {
+  color: #EE3124;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.main {
+  width: 100%;
+}
+
+.headerImage {
+  width: 100%;
+  margin-bottom: -5px;
+}
+
+.main .pesquisar {
+  width: 100%;
+  background-color: #2C2F47;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+}
+
+input {
+  display: inline;
+}
+
+.main .pesquisar input[type=text] {
+  border: none;
+  width: 65%;
+  padding: 10px;
+}
+
+.main .pesquisar input[type=date] {
+  border: none;
+  width: 65%;
+  padding: 10px;
+}
+
+.main .pesquisar select {
+  border: none;
+  width: 20%;
+  padding: 10px;
+  font-variant: small-caps;
+  font-size: 15px;
+}
+
+.main .pesquisar button {
+  border: none;
+  width: 10%;
+  padding: 10px;
+  background-color: white;
+}
+
+.main img {
+  width: 100%;
+}
+
+#mostrarElementos {
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  text-align: center;
+}
+
+.element {
+  text-align: center;
+  display: inline-block;
+  width: 20%;
+  padding: 10px;
+}
+
+.btnVer {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  font-variant: small-caps;
+  font-size: 15px;
+  background-color: #EE3124;
+  color: white;
+  font-weight: bold;
+}
+
+.formAdd {
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+  font-variant: small-caps;
+  font-size: 20px;
+}
+
+form input[type=text] {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  border-bottom: 2px solid #2C2F47;
+  font-variant: small-caps;
+  font-size: 15px;
+}
+
+form input[type=datetime-local] 
+{
+  border: none;
+  width: 100%;
+  padding: 10px;
+  border-bottom: 2px solid #2C2F47;
+  font-variant: small-caps;
+  font-size: 15px;
+}
+
+form input[type=password] {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  border-bottom: 2px solid #2C2F47;
+  font-variant: small-caps;
+  font-size: 15px;
+}
+
+form select {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  font-variant: small-caps;
+  font-size: 15px;
+  border-bottom: 2px solid #2C2F47;
+}
+
+form button {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  font-variant: small-caps;
+  font-size: 15px;
+  background-color: #EE3124;
+  color: white;
+  font-weight: bold;
+}
+
+#viewElement {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid black;
+  background-color: white;
+  z-index: 9;
+  padding: 10px;
+  width: 35%;
+  font-variant: small-caps;
+  font-size: 20px;
+}
+
+#viewElement select {
+  width: 100%;
+}
+
+#viewElement input[type=text] {
+  width: 95%;
+  font-size: 15px;
+}
+
+#viewElement input[type=password] {
+  width: 95%;
+  font-size: 15px;
+}
+
+#viewElement input[type=datetime-local] {
+  width: 95%;
+  font-size: 15px;
+}
+
+#viewElement button {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  font-variant: small-caps;
+  font-size: 15px;
+  color: white;
+  font-weight: bold;
+}
+
+#viewElement form button {
+  background-color: #2C2F47;
+}
+
+#viewElement #btnDelete {
+  background-color: #EE3124;
+}
+
+#viewElement #btnClose {
+  background-color: black;
+}
+
+.btnVerTodos {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  font-variant: small-caps;
+  font-size: 15px;
+  color: white;
+  font-weight: bold;
+  background-color: black
+}
+
+.viewFavoriteInfo {
+  width: 90%;
+  float: right;
+  font-size: 15px;
+  display: inline-flex;
+}
+
+.viewFavoriteInfoElement {
+  width: 50%;
+}
+
+#viewElement #formUpdateUsers input[type=text]{
+  font-size: 15px;
+}
+
+#viewElement #formUpdateUsers input[type=select]{
+  font-size: 15px;
+}
+
+#viewElement #formUpdateUsers {
+  font-size: 15px;
+}

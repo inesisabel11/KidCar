@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title> KidCar </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- css -->
+    <link href="stylesheets/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- js-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="javascripts/users.js"></script>
+
+</head>
+
+<body onload="verTodos(), selectCountry(), selectUserType();">
+
+    <section class="menu">
+
+        <div class="menu-logo">
+            <a href="index.html"> <img src="/images/layout/kidcar.png" alt="" /> </a>
+        </div>
+
+        <div class="nav">
+            <a href="index.html">home</a>
+
+            <div class="dropdown">
+                <a class="drop-content">carros
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="cars.html">consultar carros</a>
+                    <a href="addCars.html">adicionar carros</a>
+                    
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a class="drop-content">favoritos
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="favorites.html">consultar favoritos</a>
+                    <a href="addFavorites.html">adicionar favoritos</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a class="drop-content">comentarios
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="comments.html">consultar commentarios</a>
+                    <a href="addComment.html">adicionar comentarios</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a class="drop-content">outros
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="countries.html">gerir paises</a>
+                    <a href="carColors.html">gerir cores</a>
+                    <a href="carTypes.html">gerir tipos de carros</a>
+                    <a href="userTypes.html">gerir tipos de utilizadores</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <a class="drop-content">users
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="users.html">consultar users</a>
+                    <a href="addUsers.html">adicionar users</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a class="drop-content">alugueres
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="rents.html">consultar alugueres</a>
+                    <a href="addRents.html">adicionar alugueres</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="sectionUsers" class="main">
+
+        <section class="headerImage">
+            <img src="images/layout/header.jpg">
+        </section>
+
+        <div class="pesquisar">
+
+            <form>
+
+                <select id="pesquisarUsersPor">
+                    <option value="nome">nome</option>
+                    <option value="telefone">telefone</option>
+                    <option value="pais">país</option>
+                    <option value="nif">nif</option>
+                    <option value="email">email</option>
+                </select>
+
+                <input type="text" id="txtPesquisaUsers" placeholder="Pesquisar...">
+                <button type="button" onclick="pesquisarUsers()"><i class="fa fa-search"></i></button>
+
+            </form>
+
+        </div>
+
+        <div id="mostrarElementos"></div>
+
+    </section>
+
+    <section id="viewElement">
+
+        <form id="formUpdateUsers" action="javascript:updateUser();">
+
+            <div>
+                <p> nome
+                    <input type="text" id="updateUserName" name="userName" placeholder="nome do utilizador" required>
+                </p>
+            </div>
+
+            <div>
+                <p> telefone
+                    <input type="text" id="updateUserPhone" name="userPhone" placeholder="telefone do utilizador"
+                        required>
+                </p>
+            </div>
+
+            <div>
+                <p> país
+                    <select id="selectCountry" name="selectCountry"></select>
+                </p>
+            </div>
+
+            <div>
+                <p> nif
+                    <input type="text" id="updateUserNIF" name="userNIF" placeholder="nif do utilizador" required>
+                </p>
+            </div>
+
+            <div>
+                <p> email
+                    <input type="text" id="updateUserEmail" name="userEmail" placeholder="email do utilizador" required>
+                </p>
+            </div>
+
+            <div>
+                <p> password
+                    <input type="password" id="updateUserPassword" name="userPassword"
+                        placeholder="password do utilizador" required>
+                </p>
+            </div>
+
+            <div>
+                <p> tipo de utilizador
+                    <select id="selectUserType" name="selectUserType"></select>
+                </p>
+            </div>
+
+            <button id="btnUpdate" type="submit" class="btn btn-primary"> guardar User </button>
+
+        </form>
+
+        <br>
+
+        <button id="btnDelete"> eliminar user </button>
+
+        <br>
+
+        <button id="btnClose" onclick="fecharUser()"> fechar </button>
+
+    </section>
+
+</body>
+
+</html>

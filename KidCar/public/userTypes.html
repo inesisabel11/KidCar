@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title> KidCar </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- css -->
+    <link href="stylesheets/style.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/7954c32b0d.js"></script>
+
+    <!-- js-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="javascripts/userTypes.js"></script>
+
+</head>
+
+<body onload="verTodos();">
+
+    <section class="menu">
+
+        <div class="menu-logo">
+            <a href="index.html"> <img src="/images/layout/kidcar.png" alt="" /> </a>
+        </div>
+
+        <div class="nav">
+            <a href="index.html">home</a>
+
+            <div class="dropdown">
+                <a class="drop-content">carros
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="cars.html">consultar carros</a>
+                    <a href="addCars.html">adicionar carros</a>
+                    
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a class="drop-content">favoritos
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="favorites.html">consultar favoritos</a>
+                    <a href="addFavorites.html">adicionar favoritos</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a class="drop-content">comentarios
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="comments.html">consultar commentarios</a>
+                    <a href="addComment.html">adicionar comentarios</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a class="drop-content">outros
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="countries.html">gerir paises</a>
+                    <a href="carColors.html">gerir cores</a>
+                    <a href="carTypes.html">gerir tipos de carros</a>
+                    <a href="userTypes.html">gerir tipos de utilizadores</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <a class="drop-content">users
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="users.html">consultar users</a>
+                    <a href="addUsers.html">adicionar users</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a class="drop-content">alugueres
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="rents.html">consultar alugueres</a>
+                    <a href="addRents.html">adicionar alugueres</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="sectionTiposUtilizador" class="main">
+
+        <section class="headerImage">
+            <img src="images/layout/header.jpg">
+        </section>
+
+        <section id="addElement" class="main">
+    
+            <form id="formInsertType" class="formAdd" action="javascript:insertTypes();">
+    
+                <div>
+                    <p> nome </p>
+                    <input type="text" id="addTypeName" name="typeName" placeholder="tipo de utilizador" required>
+                </div>
+                
+                <br><br>
+                
+                <button id="btnInsert" type="submit" class="btn btn-primary"> inserir tipo de utilizador </button>
+    
+            </form>
+
+            <br><br>
+        
+        </section>
+
+        <div class="pesquisar">
+
+            <form>
+
+                <input type="text" id="txtPesquisaTipos" placeholder="Pesquisar...">
+                <button type="button" onclick="verNome()"><i class="fas fa-search"></i></button>
+
+            </form>
+
+        </div>
+
+        <div id="mostrarElementos"></div>
+
+    </section>
+
+    <section id="viewElement">
+    
+        <form id="formUpdateType" action="javascript:updateType();">
+
+            <div>
+                <p> nome </p>
+                <input type="text" id="updateTypeName" name="typeName" placeholder="Tipo de Utilizador" required>
+            </div>
+            
+            <br><br>
+            
+            <button id="btnUpdate" type="submit" class="btn btn-primary"> guardar tipo de utilizador </button>
+
+        </form>
+    
+        <br>
+    
+        <button id="btnDelete"> eliminar tipo de utilizador </button>
+        
+        <br><br><br>
+
+        <button id="btnClose" onclick="fecharTipo()"> fechar </button>
+    
+    </section>
+
+</body>
+
+</html>

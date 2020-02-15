@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title> KidCar </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- css -->
+    <link href="stylesheets/style.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/7954c32b0d.js"></script>
+
+    <!-- js-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="javascripts/comments.js"></script>
+
+</head>
+
+<body onload="verTodos(), selectUsers();">
+
+    <section class="menu">
+
+        <div class="menu-logo">
+            <a href="index.html"> <img src="/images/layout/kidcar.png" alt="" /> </a>
+        </div>
+
+        <div class="nav">
+            <a href="index.html">home</a>
+
+            <div class="dropdown">
+                <a class="drop-content">carros
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="cars.html">consultar carros</a>
+                    <a href="addCars.html">adicionar carros</a>
+                    
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a class="drop-content">favoritos
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="favorites.html">consultar favoritos</a>
+                    <a href="addFavorites.html">adicionar favoritos</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a class="drop-content">comentarios
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="comments.html">consultar commentarios</a>
+                    <a href="addComment.html">adicionar comentarios</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a class="drop-content">outros
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="countries.html">gerir paises</a>
+                    <a href="carColors.html">gerir cores</a>
+                    <a href="carTypes.html">gerir tipos de carros</a>
+                    <a href="userTypes.html">gerir tipos de utilizadores</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <a class="drop-content">users
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="users.html">consultar users</a>
+                    <a href="addUsers.html">adicionar users</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a class="drop-content">alugueres
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="rents.html">consultar alugueres</a>
+                    <a href="addRents.html">adicionar alugueres</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="section" class="main">
+
+        <section class="headerImage">
+            <img src="images/layout/header.jpg">
+        </section>
+
+        <div class="pesquisar">
+
+            <form>
+
+                <select id="pesquisarComentariosPor" onchange="changeType()">
+                    <option value="texto">texto</option>
+                    <option value="user">user</option>
+                    <option value="data">data</option>
+                   <!-- <option value="car">car</option>!-->
+                </select>
+
+                <input type="text" id="txtPesquisaComentarios" placeholder="Pesquisar...">
+                <button type="button" onclick="pesquisarComentarios()"><i class="fas fa-search"></i></button>
+
+            </form>
+
+        </div>
+
+        <div id="mostrarElementos"></div>
+
+    </section>
+
+    <section id="viewElement">
+    
+        <form id="formUpdateComentario" action="javascript:updateComment();">
+
+            <div>
+                <p> texto </p>
+                <input type="text" id="updateCommentTexto" name="commentTexto" placeholder="texto que o user deu ao comentario" required>
+            </div>
+            
+            <br>
+
+            <div>
+                <p> user </p>
+                <select id="selectCommentUser" name="commentUser"></select>
+            </div>
+            
+            <br>
+
+            <div>
+                <p> data </p>
+                <input type="datetime-local" id="updateCommentData" name="commentData" required>
+            </div>
+
+            <br>
+
+            <!--<div>
+                <p> car </p>
+                <input id="selectCommentCar" name="commentCar" required>
+            </div>--!-->
+            
+            <br><br>
+            
+            <button id="btnUpdate" type="submit" class="btn btn-primary"> guardar commentario </button>
+
+        </form>
+    
+        <br>
+    
+        <button id="btnDelete"> eliminar comentario </button>
+        
+        <br><br><br>
+
+        <button id="btnClose" onclick="fecharComentario()"> fechar </button>
+    
+    </section>
+
+</body>
+
+</html>
