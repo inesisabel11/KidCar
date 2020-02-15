@@ -9,7 +9,7 @@ router.get('/', function (req, res, next) {
     })
 });
 
-router.get('user/:id/total/', function (req, res, next) {
+router.get('/user/:id/total/', function (req, res, next) {
     DAO.getFavoritesTotal(req.params.id, function (results) {
         res.json(results);
     }, next)
