@@ -26,6 +26,18 @@ router.get('/user/:id/', function (req, res, next) {
     }, next)
 });
 
+router.get('/userId/:userId/carId/:carId', function (req, res, next) {
+
+    var data = {
+        "user": req.params.userId,
+        "car": req.params.carId 
+    };
+
+    DAO.getUserFavoriteByCarId(data, function (results) {
+        res.json(results);
+    }, next)
+});
+
 router.get('/user/:id/car/:car', function (req, res, next) {
 
     var data = {
@@ -153,6 +165,12 @@ router.put('/', function (req, res, next) {
 
 router.delete('/', function (req, res, next) {
     DAO.deleteFavorite(req.body, function (result) {
+        res.send(result);
+    }, next)
+});
+
+router.delete('/UserAndCar', function (req, res, next) {
+    DAO.deleteFavoriteCar(req.body, function (result) {
         res.send(result);
     }, next)
 });

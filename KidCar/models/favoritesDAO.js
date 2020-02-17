@@ -40,6 +40,18 @@ exports.getUserFavorites = function (obj, callback, next) {
     })
 }
 
+exports.getUserFavoriteByCarId = function (obj, callback, next) {
+    mysql.getConnection(function (err, conn) {
+        if (err) {
+            conn.release();
+            next(err);
+        }
+        else conn.query("SELECT favorite_id, car_id, car_name, color_name, type_car_description, user_id, user_name, user_phone from favorites, cars, users, type_cars, car_colors WHERE (car_color_id = color_id) AND  (car_type_car_id = type_car_id) AND (favorite_car_id = car_id) AND (favorite_user_id = user_id) AND (user_id = ?) AND (car_id = ?);", [obj.user, obj.car], function (err, rows) {
+            conn.release(); callback(rows);
+        })
+    })
+}
+
 exports.getUserFavoriteByCar = function (obj, callback, next) {
     mysql.getConnection(function (err, conn) {
         if (err) {
@@ -211,6 +223,18 @@ exports.deleteFavorite = function (obj, callback, next) {
             next(err);
         }
         else conn.query("DELETE FROM favorites WHERE favorite_id = ?", [obj.favorite_id], function (err, rows) {
+            conn.release(); callback(rows);
+        })
+    })
+}
+
+exports.deleteFavoriteCar = function (obj, callback, next) {
+    mysql.getConnection(function (err, conn) {
+        if (err) {
+            conn.release();
+            next(err);
+        }
+        else conn.query("DELETE FROM favorites WHERE favorite_user_id = ? AND favorite_car_id = ?", [obj.favorite_user_id, obj.favorite_car_id], function (err, rows) {
             conn.release(); callback(rows);
         })
     })
