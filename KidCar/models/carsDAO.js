@@ -6,7 +6,7 @@ exports.getAll = function (callback, next) {
             if (conn) conn.release();
             next(err);
         }
-        else conn.query("SELECT car_id, color_id, color_name, car_name, type_car_id, type_car_description FROM cars, type_cars, car_colors WHERE (car_type_car_id = type_car_id) AND (car_color_id = color_id);", function (err, rows) {
+        else conn.query("SELECT car_id, color_id, color_name, car_name, type_car_id, type_car_description, id_location, data, latitude, longitude FROM cars, type_cars, car_colors, location WHERE (id_carro = car_id) AND (data IN (SELECT MAX(data) FROM location GROUP BY id_carro)) AND (car_type_car_id = type_car_id) AND (car_color_id = color_id);", function (err, rows) {
             conn.release(); callback(rows);
         })
     })
@@ -30,7 +30,7 @@ exports.getByTypeAndColor = function (obj, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("SELECT car_id, color_id, color_name, car_name, type_car_id, type_car_description FROM cars, type_cars, car_colors WHERE (car_type_car_id = type_car_id) AND (car_color_id = color_id) AND (type_car_description LIKE ?) AND (color_name LIKE ?);", [ "%" + obj.type + "%", "%" + obj.color + "%"], function (err, rows) {
+        else conn.query("SELECT car_id, color_id, color_name, car_name, type_car_id, type_car_description, id_location, data, latitude, longitude FROM cars, type_cars, car_colors, location WHERE (id_carro = car_id) AND (data IN (SELECT MAX(data) FROM location GROUP BY id_carro)) AND (car_type_car_id = type_car_id) AND (car_color_id = color_id) AND (type_car_description LIKE ?) AND (color_name LIKE ?);", [ "%" + obj.type + "%", "%" + obj.color + "%"], function (err, rows) {
             conn.release(); callback(rows);
         })
     })
@@ -42,7 +42,7 @@ exports.getByNameAndColor = function (obj, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("SELECT car_id, color_id, color_name, car_name, type_car_id, type_car_description FROM cars, type_cars, car_colors WHERE (car_type_car_id = type_car_id) AND (car_color_id = color_id) AND (car_name LIKE ?) AND (color_name LIKE ?);", [ "%" + obj.name + "%", "%" + obj.color + "%"], function (err, rows) {
+        else conn.query("SELECT car_id, color_id, color_name, car_name, type_car_id, type_car_description, id_location, data, latitude, longitude FROM cars, type_cars, car_colors, location WHERE (id_carro = car_id) AND (data IN (SELECT MAX(data) FROM location GROUP BY id_carro)) AND (car_type_car_id = type_car_id) AND (car_color_id = color_id) AND (car_name LIKE ?) AND (color_name LIKE ?);", [ "%" + obj.name + "%", "%" + obj.color + "%"], function (err, rows) {
             conn.release(); callback(rows);
         })
     })
@@ -54,7 +54,7 @@ exports.getByNameAndType = function (obj, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("SELECT car_id, color_id, color_name, car_name, type_car_id, type_car_description FROM cars, type_cars, car_colors WHERE (car_type_car_id = type_car_id) AND (car_color_id = color_id) AND (car_name LIKE ?) AND (type_car_description LIKE ?);", [ "%" + obj.name + "%", "%" + obj.type + "%"], function (err, rows) {
+        else conn.query("SELECT car_id, color_id, color_name, car_name, type_car_id, type_car_description, id_location, data, latitude, longitude FROM cars, type_cars, car_colors, location WHERE (id_carro = car_id) AND (data IN (SELECT MAX(data) FROM location GROUP BY id_carro)) AND (car_type_car_id = type_car_id) AND (car_color_id = color_id) AND (car_name LIKE ?) AND (type_car_description LIKE ?);", [ "%" + obj.name + "%", "%" + obj.type + "%"], function (err, rows) {
             conn.release(); callback(rows);
         })
     })
@@ -66,7 +66,7 @@ exports.getByAll = function (obj, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("SELECT car_id, color_id, color_name, car_name, type_car_id, type_car_description FROM cars, type_cars, car_colors WHERE (car_type_car_id = type_car_id) AND (car_color_id = color_id) AND (car_name LIKE ?) AND (type_car_description LIKE ?) AND (color_name LIKE ?);", [ "%" + obj.name + "%", "%" + obj.type + "%", "%" + obj.color + "%"], function (err, rows) {
+        else conn.query("SELECT car_id, color_id, color_name, car_name, type_car_id, type_car_description, id_location, data, latitude, longitude FROM cars, type_cars, car_colors, location WHERE (id_carro = car_id) AND (data IN (SELECT MAX(data) FROM location GROUP BY id_carro)) AND (car_type_car_id = type_car_id) AND (car_color_id = color_id) AND (car_name LIKE ?) AND (type_car_description LIKE ?) AND (color_name LIKE ?);", [ "%" + obj.name + "%", "%" + obj.type + "%", "%" + obj.color + "%"], function (err, rows) {
             conn.release(); callback(rows);
         })
     })
@@ -79,7 +79,7 @@ exports.getById = function (carId, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("SELECT car_id, color_id, color_name, car_name, type_car_id, type_car_description FROM cars, type_cars, car_colors WHERE (car_type_car_id = type_car_id) AND (car_color_id = color_id) AND (car_id = ?);", [carId], function (err, rows) {
+        else conn.query("SELECT car_id, color_id, color_name, car_name, type_car_id, type_car_description, id_location, data, latitude, longitude FROM cars, type_cars, car_colors, location WHERE (id_carro = car_id) AND (data IN (SELECT MAX(data) FROM location GROUP BY id_carro)) AND (car_type_car_id = type_car_id) AND (car_color_id = color_id) AND (car_id = ?);", [carId], function (err, rows) {
             conn.release(); callback(rows);
         })
     })
@@ -91,7 +91,7 @@ exports.getByType = function (carType, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("SELECT car_id, color_id, color_name, car_name, type_car_id, type_car_description FROM cars, type_cars, car_colors WHERE (car_type_car_id = type_car_id) AND (car_color_id = color_id) AND (type_car_description LIKE ?);", "%" + [carType] + "%", function (err, rows) {
+        else conn.query("SELECT car_id, color_id, color_name, car_name, type_car_id, type_car_description, id_location, data, latitude, longitude FROM cars, type_cars, car_colors, location WHERE (id_carro = car_id) AND (data IN (SELECT MAX(data) FROM location GROUP BY id_carro)) AND (car_type_car_id = type_car_id) AND (car_color_id = color_id) AND (type_car_description LIKE ?);", "%" + [carType] + "%", function (err, rows) {
             conn.release(); callback(rows);
         })
     })
@@ -103,7 +103,7 @@ exports.getByColor = function (carColor, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("SELECT car_id, color_id, color_name, car_name, type_car_id, type_car_description FROM cars, type_cars, car_colors WHERE (car_type_car_id = type_car_id) AND (car_color_id = color_id) AND (color_name LIKE ?);", "%" + [carColor] + "%", function (err, rows) {
+        else conn.query("SELECT car_id, color_id, color_name, car_name, type_car_id, type_car_description, id_location, data, latitude, longitude FROM cars, type_cars, car_colors, location WHERE (id_carro = car_id) AND (data IN (SELECT MAX(data) FROM location GROUP BY id_carro)) AND (car_type_car_id = type_car_id) AND (car_color_id = color_id) AND (color_name LIKE ?);", "%" + [carColor] + "%", function (err, rows) {
             conn.release(); callback(rows);
         })
     })
@@ -116,7 +116,7 @@ exports.getByName = function (carName, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("SELECT car_id, color_id, color_name, car_name, type_car_id, type_car_description FROM cars, type_cars, car_colors WHERE (car_type_car_id = type_car_id) AND (car_color_id = color_id) AND (car_name LIKE ?);", "%" + [carName] + "%", function (err, rows) {
+        else conn.query("SELECT car_id, color_id, color_name, car_name, type_car_id, type_car_description, id_location, data, latitude, longitude FROM cars, type_cars, car_colors, location WHERE (id_carro = car_id) AND (data IN (SELECT MAX(data) FROM location GROUP BY id_carro)) AND (car_type_car_id = type_car_id) AND (car_color_id = color_id) AND (car_name LIKE ?);", "%" + [carName] + "%", function (err, rows) {
             conn.release(); callback(rows);
         })
     })
