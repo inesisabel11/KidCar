@@ -228,7 +228,7 @@ exports.deleteFavorite = function (obj, callback, next) {
     })
 }
 
-exports.deleteFavoriteCar = function (obj, callback, next) {
+teCar = function (obj, callback, next) {
     mysql.getConnection(function (err, conn) {
         if (err) {
             conn.release();
