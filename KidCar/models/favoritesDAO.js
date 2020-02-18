@@ -234,7 +234,7 @@ exports.deleteFavoriteCar = function (obj, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("DELETE FROM favorites WHERE favorite_user_id = ? AND favorite_car_id = ?", [obj.favorite_user_id, obj.favorite_car_id], function (err, rows) {
+        else conn.query("DELETE FROM favorites WHERE (favorite_user_id = ?) AND (favorite_car_id = ?)", [obj.favorite_user_id, obj.favorite_car_id], function (err, rows) {
             conn.release(); callback(rows);
         })
     })

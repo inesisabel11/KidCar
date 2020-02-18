@@ -75,6 +75,12 @@ router.post('/', function (req, res, next) {
   })
 });
 
+router.post('/insertCarComment', function (req, res, next) {
+  commentsDAO.insertCarComment(req.body, function (result) {
+      res.send(result);
+  })
+});
+
 router.put('/', function (req, res, next) {
   commentsDAO.updateComment(req.body, function (result) {
       res.send(result);
@@ -83,6 +89,12 @@ router.put('/', function (req, res, next) {
 
 router.delete('/', function (req, res, next) {
   commentsDAO.deleteComment(req.body, function (result) {
+      res.send(result);
+  })
+});
+
+router.delete('/deleteCarComment', function (req, res, next) {
+  commentsDAO.deleteCarComment(req.body, function (result) {
       res.send(result);
   })
 });
