@@ -87,14 +87,23 @@ router.put('/', function (req, res, next) {
   })
 });
 
-router.delete('/', function (req, res, next) {
-  commentsDAO.deleteComment(req.body, function (result) {
+router.delete('/:comment', function (req, res, next) {
+  
+  var data = {
+    "comment_id": req.params.comment
+  };
+  commentsDAO.deleteComment(data, function (result) {
       res.send(result);
   })
 });
 
-router.delete('/deleteCarComment', function (req, res, next) {
-  commentsDAO.deleteCarComment(req.body, function (result) {
+router.delete('/deleteCarComment/:comment', function (req, res, next) {
+
+  var data = {
+    "comment_car_id": req.params.comment
+};
+
+  commentsDAO.deleteCarComment(data, function (result) {
       res.send(result);
   })
 });

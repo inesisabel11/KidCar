@@ -157,7 +157,7 @@ exports.insertComment = function (obj, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("INSERT INTO comments (comment_text, comment_user_id, comment_date) VALUES (?,?,?)", [obj.comment_text, obj.comment_user_id, obj.comment_date], function (err, rows) {
+        else conn.query("INSERT INTO comments (comment_text, comment_user_id, comment_date) VALUES (?,?, NOW())", [obj.comment_text, obj.comment_user_id], function (err, rows) {
             conn.release(); callback(rows);
         })
     })

@@ -169,8 +169,14 @@ router.delete('/', function (req, res, next) {
     }, next)
 });
 
-router.delete('/UserAndCar', function (req, res, next) {
-    DAO.deleteFavoriteCar(req.body, function (result) {
+router.delete('/user/:user/car/:car', function (req, res, next) {
+
+    var data = {
+        "user": req.params.user,
+        "car": req.params.car
+    };
+
+    DAO.deleteFavoriteCar(data, function (result) {
         res.send(result);
     }, next)
 });

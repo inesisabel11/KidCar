@@ -178,21 +178,37 @@ router.put('/cars/', function (req, res, next) {
   }, next)
 });
 
-router.delete('/', function (req, res, next) {
-  DAO.deleteRent(req.body, function (result) {
+router.delete('/:id', function (req, res, next) {
+
+  var data = {
+    "rent_id": req.params.id
+  };
+
+  DAO.deleteRent(data, function (result) {
       res.send(result);
   }, next)
 });
 
-router.delete('/users/', function (req, res, next) {
-  DAO.deleteRentFromUser(req.body, function (result) {
+router.delete('/userRent/:rent', function (req, res, next) {
+
+  var data = {
+    "rent_user_rent_id": req.params.rent
+  };
+
+  DAO.deleteRentFromUser(data, function (result) {
       res.send(result);
   }, next)
 });
 
 
-router.delete('/cars/', function (req, res, next) {
-  DAO.deleteRentFromCar(req.body, function (result) {
+router.delete('/carRent/:rent', function (req, res, next) {
+
+  var data = {
+
+    "rent_car_rent_id": req.params.rent
+};
+
+  DAO.deleteRentFromCar(data, function (result) {
       res.send(result);
   }, next)
 });
