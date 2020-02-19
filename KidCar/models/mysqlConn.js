@@ -1,10 +1,10 @@
 var mysql = require('mysql');
 
 var pool = mysql.createPool({
-  host: "remotemysql.com",
-  user: "4z6BwNz4Is",
-  password: "cGCQcsYHZt",
-  database: "4z6BwNz4Is"
+  host: "db4free.net",
+  user: "kidcar",
+  password: "kidcarteste",
+  database: "kidcar"
 });
 
 exports.pool = pool;
