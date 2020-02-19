@@ -228,13 +228,13 @@ exports.deleteFavorite = function (obj, callback, next) {
     })
 }
 
-teCar = function (obj, callback, next) {
+exports.deleteFavoriteCar = function (obj, callback, next) {
     mysql.getConnection(function (err, conn) {
         if (err) {
             conn.release();
             next(err);
         }
-        else conn.query("DELETE FROM favorites WHERE (favorite_user_id = ?) AND (favorite_car_id = ?)", [obj.favorite_user_id, obj.favorite_car_id], function (err, rows) {
+        else conn.query("DELETE FROM favorites WHERE (favorite_user_id = ?) AND (favorite_car_id = ?)", [obj.user, obj.car], function (err, rows) {
             conn.release(); callback(rows);
         })
     })
