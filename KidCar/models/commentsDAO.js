@@ -169,7 +169,7 @@ exports.insertCarComment = function (obj, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("INSERT INTO comments_cars (comment_car_text, comment_car_user_id, comment_car_car_id, comment_car_date) VALUES (?,?,?,?)", [obj.comment_car_text, obj.comment_car_user_id, obj.comment_car_car_id, obj.comment_date], function (err, rows) {
+        else conn.query("INSERT INTO comments_cars (comment_car_text, comment_car_user_id, comment_car_car_id, comment_car_date) VALUES (?,?,?, NOW())", [obj.comment_car_text, obj.comment_car_user_id, obj.comment_car_car_id], function (err, rows) {
             conn.release(); callback(rows);
         })
     })
@@ -205,7 +205,7 @@ exports.deleteCarComment = function (obj, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("DELETE FROM comments_cars WHERE comment_car_id = ?", [obj.comment_car_id], function (err, rows) {
+        else conn.query("DELETE FROM comments_cars WHERE (comment_car_id = ?)", [obj.comment_car_id], function (err, rows) {
             conn.release(); callback(rows);
         })
     })
