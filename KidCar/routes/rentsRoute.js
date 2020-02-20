@@ -131,6 +131,19 @@ router.get('/cars/type/:type', function (req, res, next) {
 
 });
 
+router.get('/car/:car/rentStart/:start/rentEnd/:end', function (req, res, next) {
+
+  var data = {
+      "car": req.params.car,
+      "start": req.params.start,
+      "end": req.params.end
+    
+    DAO.getNumberOfCarRentsByDate(data, function (results) {
+      res.json(results);
+  }, next)
+});
+
+
 router.get('/maxId/', function (req, res, next) {
   DAO.getMaxRentId(function (results) {
     res.send(results);
