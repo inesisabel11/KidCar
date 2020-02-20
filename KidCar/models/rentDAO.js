@@ -166,7 +166,7 @@ exports.insertRent = function (obj, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("INSERT INTO rents (rent_date_start, rent_date_end) VALUES (?,?)", [Date.parse(obj.rent_date_start).toLocaleString(), Date.parse(obj.rent_date_end).toLocaleString()], function (err, rows) {
+        else conn.query("INSERT INTO rents (rent_date_start, rent_date_end) VALUES (?,?)", [obj.rent_date_start, obj.rent_date_end], function (err, rows) {
             conn.release(); callback(rows);
         })
     })
