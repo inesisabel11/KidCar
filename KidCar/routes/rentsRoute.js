@@ -52,12 +52,11 @@ router.get('/user/:user/carType/:type', function (req, res, next) {
   }, next)
 });
 
-router.get('/user/:user/startDate/:startDate/endDate/:endDate', function (req, res, next) {
+router.get('/user/:user/date/:date', function (req, res, next) {
 
   var data = {
-      "user": req.params.user,
-      "startDate": req.params.startDate,
-      "endDate": req.params.endDate 
+    "date": req.params.date,
+      "user": req.params.user
   };
 
   DAO.getUserRentByDate(data, function (results) {
@@ -78,13 +77,12 @@ router.get('/user/:user/car/:car/carType/:type', function (req, res, next) {
   }, next)
 });
 
-router.get('/user/:user/car/:car/startDate/:startDate/endDate/:endDate', function (req, res, next) {
+router.get('/user/:user/car/:car/date/:date', function (req, res, next) {
 
   var data = {
+    "date": req.params.date,
       "user": req.params.user,
-      "car": req.params.car,
-      "startDate": req.params.startDate,
-      "endDate": req.params.endDate 
+      "car": req.params.car
   };
 
   DAO.getUserRentByCarNameAndDate(data, function (results) {
@@ -92,13 +90,12 @@ router.get('/user/:user/car/:car/startDate/:startDate/endDate/:endDate', functio
   }, next)
 });
 
-router.get('/user/:user/carType/:type/startDate/:startDate/endDate/:endDate', function (req, res, next) {
+router.get('/user/:user/carType/:type/date/:date', function (req, res, next) {
 
   var data = {
+    "date": req.params.date,
       "user": req.params.user,
-      "type": req.params.type,
-      "startDate": req.params.startDate,
-      "endDate": req.params.endDate 
+      "type": req.params.type
   };
 
   DAO.getUserRentByCarTypeAndDate(data, function (results) {
@@ -106,14 +103,13 @@ router.get('/user/:user/carType/:type/startDate/:startDate/endDate/:endDate', fu
   }, next)
 });
 
-router.get('/user/:user/car/:car/carType/:type/startDate/:startDate/endDate/:endDate', function (req, res, next) {
+router.get('/user/:user/car/:car/carType/:type/date/:date', function (req, res, next) {
 
   var data = {
-      "user": req.params.user,
-      "car": req.params.car,
-      "type": req.params.type,
-      "startDate": req.params.startDate,
-      "endDate": req.params.endDate 
+    "date": req.params.date,
+    "user": req.params.user,
+    "car": req.params.car,
+    "type": req.params.type
   };
 
   DAO.getUserRentByAll(data, function (results) {

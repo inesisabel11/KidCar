@@ -9,7 +9,7 @@ exports.getAll = function(callback, next)
             conn.release();
             next(err);
         }
-        else conn.query("SELECT rent_id, rent_date_start AS inicio, rent_date_end AS fim, user_name, car_name, type_car_description FROM rents, rents_cars, rents_user, users, cars, type_cars WHERE (rent_id = rent_car_rent_id) AND (rent_id = rent_user_rent_id) AND (rent_car_car_id = car_id) AND (car_type_car_id = type_car_id) AND (user_id = rent_user_user_id);", function(err, rows)
+        else conn.query("SELECT DISTINCT rent_id, rent_date_start AS inicio, rent_date_end AS fim, user_name, car_id, car_name, type_car_description FROM rents, rents_cars, rents_user, users, cars, type_cars WHERE (rent_id = rent_car_rent_id) AND (rent_id = rent_user_rent_id) AND (rent_car_car_id = car_id) AND (car_type_car_id = type_car_id) AND (user_id = rent_user_user_id);", function(err, rows)
         {
             conn.release(); callback(rows);
         })
@@ -22,7 +22,7 @@ exports.getByUserId = function (obj, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("SELECT DISTINCT rent_id, rent_date_start AS inicio, rent_date_end AS fim, user_name, car_name, type_car_description FROM rents, rents_cars, rents_user, users, cars, type_cars WHERE (rent_id = rent_car_rent_id) AND (rent_id = rent_user_rent_id) AND (rent_car_car_id = car_id) AND (car_type_car_id = type_car_id) AND (user_id = rent_user_user_id) AND (user_id = ?);", [obj.user], function (err, rows) {
+        else conn.query("SELECT DISTINCT rent_id, rent_date_start AS inicio, rent_date_end AS fim, user_name, car_id, car_name, type_car_description FROM rents, rents_cars, rents_user, users, cars, type_cars WHERE (rent_id = rent_car_rent_id) AND (rent_id = rent_user_rent_id) AND (rent_car_car_id = car_id) AND (car_type_car_id = type_car_id) AND (user_id = rent_user_user_id) AND (user_id = ?);", [obj.user], function (err, rows) {
             conn.release(); callback(rows);
         })
     })
@@ -34,7 +34,7 @@ exports.getUserRentByCarName = function (obj, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("SELECT DISTINCT rent_id, rent_date_start AS inicio, rent_date_end AS fim, user_name, car_name, type_car_description FROM rents, rents_cars, rents_user, users, cars, type_cars WHERE (rent_id = rent_car_rent_id) AND (rent_id = rent_user_rent_id) AND (rent_car_car_id = car_id) AND (car_type_car_id = type_car_id) AND (user_id = rent_user_user_id) AND (user_id = ?) AND (car_name LIKE ?);", [obj.user, "%" + obj.car + "%"], function (err, rows) {
+        else conn.query("SELECT DISTINCT rent_id, rent_date_start AS inicio, rent_date_end AS fim, user_name, car_id, car_name, type_car_description FROM rents, rents_cars, rents_user, users, cars, type_cars WHERE (rent_id = rent_car_rent_id) AND (rent_id = rent_user_rent_id) AND (rent_car_car_id = car_id) AND (car_type_car_id = type_car_id) AND (user_id = rent_user_user_id) AND (user_id = ?) AND (car_name LIKE ?);", [obj.user, "%" + obj.car + "%"], function (err, rows) {
             conn.release(); callback(rows);
         })
     })
@@ -46,7 +46,7 @@ exports.getUserRentByCarType = function (obj, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("SELECT DISTINCT rent_id, rent_date_start AS inicio, rent_date_end AS fim, user_name, car_name, type_car_description FROM rents, rents_cars, rents_user, users, cars, type_cars WHERE (rent_id = rent_car_rent_id) AND (rent_id = rent_user_rent_id) AND (rent_car_car_id = car_id) AND (car_type_car_id = type_car_id) AND (user_id = rent_user_user_id) AND (user_id = ?) AND (type_car_description LIKE ?);", [obj.user, "%" + obj.type + "%"], function (err, rows) {
+        else conn.query("SELECT DISTINCT rent_id, rent_date_start AS inicio, rent_date_end AS fim, user_name, car_id, car_name, type_car_description FROM rents, rents_cars, rents_user, users, cars, type_cars WHERE (rent_id = rent_car_rent_id) AND (rent_id = rent_user_rent_id) AND (rent_car_car_id = car_id) AND (car_type_car_id = type_car_id) AND (user_id = rent_user_user_id) AND (user_id = ?) AND (type_car_description LIKE ?);", [obj.user, "%" + obj.type + "%"], function (err, rows) {
             conn.release(); callback(rows);
         })
     })
@@ -58,7 +58,7 @@ exports.getUserRentByDate = function (obj, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("SELECT DISTINCT rent_id, rent_date_start AS inicio, rent_date_end AS fim, user_name, car_name, type_car_description FROM rents, rents_cars, rents_user, users, cars, type_cars WHERE (rent_id = rent_car_rent_id) AND (rent_id = rent_user_rent_id) AND (rent_car_car_id = car_id) AND (car_type_car_id = type_car_id) AND (user_id = rent_user_user_id) AND (user_id = ?) AND (? BETWEEN rent_date_start AND rent_date_end);", [obj.user, obj.date], function (err, rows) {
+        else conn.query("SELECT DISTINCT rent_id, rent_date_start AS inicio, rent_date_end AS fim, user_name, car_id, car_name, type_car_description FROM rents, rents_cars, rents_user, users, cars, type_cars WHERE (rent_id = rent_car_rent_id) AND (rent_id = rent_user_rent_id) AND (rent_car_car_id = car_id) AND (car_type_car_id = type_car_id) AND (user_id = rent_user_user_id) AND (user_id = ?) AND (? BETWEEN rent_date_start AND rent_date_end);", [obj.user, obj.date], function (err, rows) {
             conn.release(); callback(rows);
         })
     })
@@ -70,7 +70,7 @@ exports.getUserRentByCarNameAndType = function (obj, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("SELECT DISTINCT rent_id, rent_date_start AS inicio, rent_date_end AS fim, user_name, car_name, type_car_description FROM rents, rents_cars, rents_user, users, cars, type_cars WHERE (rent_id = rent_car_rent_id) AND (rent_id = rent_user_rent_id) AND (rent_car_car_id = car_id) AND (car_type_car_id = type_car_id) AND (user_id = rent_user_user_id) AND (user_id = ?) AND (car_name LIKE ?) AND (type_car_description LIKE ?);", [obj.user, "%" + obj.car + "%", "%" + obj.type + "%"], function (err, rows) {
+        else conn.query("SELECT DISTINCT rent_id, rent_date_start AS inicio, rent_date_end AS fim, user_name, car_id, car_name, type_car_description FROM rents, rents_cars, rents_user, users, cars, type_cars WHERE (rent_id = rent_car_rent_id) AND (rent_id = rent_user_rent_id) AND (rent_car_car_id = car_id) AND (car_type_car_id = type_car_id) AND (user_id = rent_user_user_id) AND (user_id = ?) AND (car_name LIKE ?) AND (type_car_description LIKE ?);", [obj.user, "%" + obj.car + "%", "%" + obj.type + "%"], function (err, rows) {
             conn.release(); callback(rows);
         })
     })
@@ -82,7 +82,7 @@ exports.getUserRentByCarNameAndDate = function (obj, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("SELECT DISTINCT rent_id, rent_date_start AS inicio, rent_date_end AS fim, user_name, car_name, type_car_description FROM rents, rents_cars, rents_user, users, cars, type_cars WHERE (rent_id = rent_car_rent_id) AND (rent_id = rent_user_rent_id) AND (rent_car_car_id = car_id) AND (car_type_car_id = type_car_id) AND (user_id = rent_user_user_id) AND (user_id = ?) AND (car_name LIKE ?) AND (? BETWEEN rent_date_start AND rent_date_end);", [obj.user, "%" + obj.car + "%", obj.date], function (err, rows) {
+        else conn.query("SELECT DISTINCT rent_id, rent_date_start AS inicio, rent_date_end AS fim, user_name, car_id, car_name, type_car_description FROM rents, rents_cars, rents_user, users, cars, type_cars WHERE (rent_id = rent_car_rent_id) AND (rent_id = rent_user_rent_id) AND (rent_car_car_id = car_id) AND (car_type_car_id = type_car_id) AND (user_id = rent_user_user_id) AND (user_id = ?) AND (car_name LIKE ?) AND (? BETWEEN rent_date_start AND rent_date_end);", [obj.user, "%" + obj.car + "%", obj.date], function (err, rows) {
             conn.release(); callback(rows);
         })
     })
@@ -94,7 +94,7 @@ exports.getUserRentByCarNameAndDate = function (obj, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("SELECT DISTINCT rent_id, rent_date_start AS inicio, rent_date_end AS fim, user_name, car_name, type_car_description FROM rents, rents_cars, rents_user, users, cars, type_cars WHERE (rent_id = rent_car_rent_id) AND (rent_id = rent_user_rent_id) AND (rent_car_car_id = car_id) AND (car_type_car_id = type_car_id) AND (user_id = rent_user_user_id) AND (user_id = ?) AND (type_car_description LIKE ?) AND (? BETWEEN rent_date_start AND rent_date_end);", [obj.user, "%" + obj.type + "%", obj.date], function (err, rows) {
+        else conn.query("SELECT DISTINCT rent_id, rent_date_start AS inicio, rent_date_end AS fim, user_name, car_id, car_name, type_car_description FROM rents, rents_cars, rents_user, users, cars, type_cars WHERE (rent_id = rent_car_rent_id) AND (rent_id = rent_user_rent_id) AND (rent_car_car_id = car_id) AND (car_type_car_id = type_car_id) AND (user_id = rent_user_user_id) AND (user_id = ?) AND (type_car_description LIKE ?) AND (? BETWEEN rent_date_start AND rent_date_end);", [obj.user, "%" + obj.type + "%", obj.date], function (err, rows) {
             conn.release(); callback(rows);
         })
     })
@@ -106,7 +106,7 @@ exports.getUserRentByAll = function (obj, callback, next) {
             conn.release();
             next(err);
         }
-        else conn.query("SELECT DISTINCT rent_id, rent_date_start AS inicio, rent_date_end AS fim, user_name, car_name, type_car_description FROM rents, rents_cars, rents_user, users, cars, type_cars WHERE (rent_id = rent_car_rent_id) AND (rent_id = rent_user_rent_id) AND (rent_car_car_id = car_id) AND (car_type_car_id = type_car_id) AND (user_id = rent_user_user_id) AND (user_id = ?) AND (car_name LIKE ?) AND (type_car_description LIKE ?) AND (? BETWEEN rent_date_start AND rent_date_end);", [obj.user, "%" + obj.car + "%", "%" + obj.type + "%", obj.date], function (err, rows) {
+        else conn.query("SELECT DISTINCT rent_id, rent_date_start AS inicio, rent_date_end AS fim, user_name, car_id, car_name, type_car_description FROM rents, rents_cars, rents_user, users, cars, type_cars WHERE (rent_id = rent_car_rent_id) AND (rent_id = rent_user_rent_id) AND (rent_car_car_id = car_id) AND (car_type_car_id = type_car_id) AND (user_id = rent_user_user_id) AND (user_id = ?) AND (car_name LIKE ?) AND (type_car_description LIKE ?) AND (? BETWEEN rent_date_start AND rent_date_end);", [obj.user, "%" + obj.car + "%", "%" + obj.type + "%", obj.date], function (err, rows) {
             conn.release(); callback(rows);
         })
     })
