@@ -148,6 +148,18 @@ exports.getByCarType = function (type, callback, next) {
     })
 }
 
+exports.getNumberOfCarRentsByDate = function (obj, callback, next) {
+    mysql.getConnection(function (err, conn) {
+        if (err) {
+            conn.release();
+            next(err);
+        }
+        else conn.query("SELECT COUNT(DISTINCT rent_id) AS 'count' FROM rents, rents_cars WHERE (rent_car_car_id = ?) AND ((? BETWEEN rent_date_start AND rent_date_end) OR (? BETWEEN rent_date_start AND rent_date_end));",[obj.car, obj.start, obj.end], function (err, rows) {
+            conn.release(); callback(rows);
+        })
+    })
+}
+
 exports.getMaxRentId = function (callback, next) {
     mysql.getConnection(function (err, conn) {
         if (err) {
