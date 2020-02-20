@@ -137,6 +137,7 @@ router.get('/car/:car/rentStart/:start/rentEnd/:end', function (req, res, next) 
       "car": req.params.car,
       "start": req.params.start,
       "end": req.params.end
+  }
     
     DAO.getNumberOfCarRentsByDate(data, function (results) {
       res.json(results);
